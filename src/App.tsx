@@ -84,8 +84,8 @@ function App() {
   };
 
   return (
-    <div className="p-5 w-full grid grid-cols-2 gap-8">
-      <div className="h-screen">
+    <div className="p-5 w-full grid grid-cols-2 gap-8 h-screen">
+      
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4 h-10/12">
           <label htmlFor="comment-area" className="font-bold text-blue-700">
             Enter your data
@@ -107,7 +107,7 @@ function App() {
             Generate Interfaces
           </button>
         </form>
-      </div>
+    
 
       <div className="flex flex-col space-y-4 h-10/12">
         <label htmlFor="result-area" className="font-bold text-green-700">
@@ -119,7 +119,7 @@ function App() {
           // rows={25}
           value={interfaceOutput}
           readOnly
-          className="bg-gray-100 p-3 rounded-xl font-mono h-10/12"
+          className="bg-gray-100 p-3 rounded-xl font-mono h-full"
         />
       </div>
     </div>
