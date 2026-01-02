@@ -109,7 +109,7 @@ function App() {
         </form>
       </div>
 
-      <div className="flex flex-col space-y-4 h-screen">
+      <div className="flex flex-col space-y-4 h-10/12">
         <label htmlFor="result-area" className="font-bold text-green-700">
           Generated TypeScript Interfaces
         </label>
