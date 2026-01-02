@@ -8,11 +8,13 @@ function App() {
   const [comment, setComment] = useState("");
   const [interfaceOutput, setInterfaceOutput] = useState("");
 
+  //Capitalize the Interface name
   function capitalizeFirstLetter(val: string): string {
     if (!val) return "";
     return val.charAt(0).toUpperCase() + val.slice(1);
   }
 
+  //The main function which will convert JSON to Interface data
   function recursive(
     data: unknown,
     interfaces: InterfaceMap
@@ -44,6 +46,7 @@ function App() {
     return result;
   }
 
+  //Convert the Object data to String format to show in the output text area
   function generateInterface(
     name: string,
     obj: InterfaceShape
@@ -55,10 +58,12 @@ function App() {
     return `interface ${name} {\n${fields}\n}`;
   }
 
+  //Reflect the changes in input box
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);
   };
 
+  //After click the Generate button
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -80,8 +85,8 @@ function App() {
 
   return (
     <div className="p-5 w-full grid grid-cols-2 gap-8">
-      <div>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+      <div className="h-screen">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4 h-10/12">
           <label htmlFor="comment-area" className="font-bold text-blue-700">
             Enter your data
           </label>
@@ -90,9 +95,9 @@ function App() {
             id="comment-area"
             value={comment}
             onChange={handleChange}
-            rows={25}
+            // rows={25}
             placeholder="Paste JSON / JSON5 here..."
-            className="bg-gray-200 p-2 rounded-2xl"
+            className="bg-gray-200 p-2 rounded-2xl h-full"
           />
 
           <button
@@ -104,17 +109,17 @@ function App() {
         </form>
       </div>
 
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-4 h-screen">
         <label htmlFor="result-area" className="font-bold text-green-700">
           Generated TypeScript Interfaces
         </label>
 
         <textarea
           id="result-area"
-          rows={25}
+          // rows={25}
           value={interfaceOutput}
           readOnly
-          className="bg-gray-100 p-3 rounded-xl font-mono"
+          className="bg-gray-100 p-3 rounded-xl font-mono h-10/12"
         />
       </div>
     </div>
