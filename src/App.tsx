@@ -95,11 +95,11 @@ function App() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative bg-gray-800">
       <div className="p-5 w-full grid grid-cols-2 gap-8 h-screen">
         
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-4 h-10/12">
-            <label htmlFor="comment-area" className="font-bold text-blue-700">
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-3 h-10/12">
+            <label htmlFor="comment-area" className="font-bold text-blue-500 text-lg">
               Enter your data
             </label>
 
@@ -109,20 +109,20 @@ function App() {
               onChange={handleChange}
               // rows={25}
               placeholder="Paste JSON / JSON5 here..."
-              className="bg-gray-200 p-2 rounded-2xl h-full"
+              className="bg-gray-900 text-gray-100  p-2 rounded-2xl h-full shadow-md"
             />
 
             <button
               type="submit"
-              className="bg-blue-600 p-2 rounded-2xl text-lg font-semibold text-white"
+              className="p-2 rounded-2xl text-lg font-semibold text-white bg-gradient-to-r from-sky-700 via-blue-500 to-indigo-600 shadow-lg border border-sky-400"
             >
               Generate Interfaces
             </button>
           </form>
       
 
-        <div className="flex flex-col space-y-4 h-10/12">
-          <label htmlFor="result-area" className="font-bold text-green-700">
+        <div className="flex flex-col space-y-3 h-10/12">
+          <label htmlFor="result-area" className="font-bold text-green-500 text-lg">
             Generated TypeScript Interfaces
           </label>
 
@@ -131,14 +131,14 @@ function App() {
             // rows={25}
             value={interfaceOutput}
             readOnly
-            className="bg-gray-100 p-3 rounded-xl font-mono h-full"
+            className="bg-slate-900 text-white  p-3 rounded-xl font-mono h-full shadow-lg"
           />
         </div>
 
         
       </div>
 
-      <div className="bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit p-3 absolute right-8 top-6">
+      <div className="bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-3 py-2 absolute right-10 top-7">
         <button 
           onClick={handleCopyText}
           className="flex space-x-2 items-center">
