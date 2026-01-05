@@ -109,12 +109,12 @@ function App() {
               onChange={handleChange}
               // rows={25}
               placeholder="Paste JSON / JSON5 here..."
-              className="bg-gray-900 text-gray-100  p-2 rounded-2xl h-full shadow-md"
+              className="bg-gray-900 text-gray-100  p-2 rounded-2xl h-full shadow-md border border-gray-600"
             />
 
             <button
               type="submit"
-              className="p-2 rounded-2xl text-lg font-semibold text-white bg-gradient-to-r from-sky-700 via-blue-500 to-indigo-600 shadow-lg border border-sky-400"
+              className="p-2 rounded-2xl text-lg font-semibold text-white bg-gradient-to-r from-sky-700 via-blue-500 to-indigo-600 shadow-lg border border-sky-400 hover:scale-101"
             >
               Generate Interfaces
             </button>
@@ -131,19 +131,19 @@ function App() {
             // rows={25}
             value={interfaceOutput}
             readOnly
-            className="bg-slate-900 text-white  p-3 rounded-xl font-mono h-full shadow-lg"
+            className="bg-slate-900 text-white  p-3 rounded-xl font-mono h-full shadow-lg border border-gray-600"
           />
         </div>
 
         
       </div>
 
-      <div className="bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-3 py-2 absolute right-10 top-7">
+      <div className="bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-3 py-2 absolute right-10 top-7 hover:scale-101 focus:outline-2">
         <button 
           onClick={handleCopyText}
           className="flex space-x-2 items-center">
-           <Copy className={`w-4 h-4 ${copyResultState? 'text-green-700': 'text-gray-700'} `}/> 
-           <span className={`text-md ${copyResultState? 'text-green-700': 'text-gray-700'}`}>{ copyResultState ? 'Copied to clipboard!': 'Copy Code'}</span></button>
+           <Copy className={`w-4 h-4 ${copyResultState? 'text-green-700': 'text-gray-800'} `}/> 
+           <span className={`text-md ${copyResultState? 'text-green-700': 'text-gray-800'}`}>{ copyResultState ? 'Copied to clipboard!': 'Copy Code'}</span></button>
       </div>
     </div>
   );
