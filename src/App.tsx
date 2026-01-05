@@ -1,5 +1,6 @@
 import { useState } from "react";
 import JSON5 from "json5";
+import { Copy } from "lucide-react";
 
 type InterfaceShape = Record<string, string>;
 type InterfaceMap = Record<string, InterfaceShape>;
@@ -7,6 +8,7 @@ type InterfaceMap = Record<string, InterfaceShape>;
 function App() {
   const [comment, setComment] = useState("");
   const [interfaceOutput, setInterfaceOutput] = useState("");
+  const [copyResultState, setCopyResultState] = useState(false)
 
   //Capitalize the Interface name
   function capitalizeFirstLetter(val: string): string {
@@ -83,44 +85,65 @@ function App() {
     }
   };
 
+  const handleCopyText = ()=> {
+    setCopyResultState(true);
+    window.navigator.clipboard.writeText(interfaceOutput)
+
+    setTimeout(()=>{
+      setCopyResultState(false)
+    }, 1500)
+  }
+
   return (
-    <div className="p-5 w-full grid grid-cols-2 gap-8 h-screen">
+    <div className="relative">
+      <div className="p-5 w-full grid grid-cols-2 gap-8 h-screen">
+        
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-4 h-10/12">
+            <label htmlFor="comment-area" className="font-bold text-blue-700">
+              Enter your data
+            </label>
+
+            <textarea
+              id="comment-area"
+              value={comment}
+              onChange={handleChange}
+              // rows={25}
+              placeholder="Paste JSON / JSON5 here..."
+              className="bg-gray-200 p-2 rounded-2xl h-full"
+            />
+
+            <button
+              type="submit"
+              className="bg-blue-600 p-2 rounded-2xl text-lg font-semibold text-white"
+            >
+              Generate Interfaces
+            </button>
+          </form>
       
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4 h-10/12">
-          <label htmlFor="comment-area" className="font-bold text-blue-700">
-            Enter your data
+
+        <div className="flex flex-col space-y-4 h-10/12">
+          <label htmlFor="result-area" className="font-bold text-green-700">
+            Generated TypeScript Interfaces
           </label>
 
           <textarea
-            id="comment-area"
-            value={comment}
-            onChange={handleChange}
+            id="result-area"
             // rows={25}
-            placeholder="Paste JSON / JSON5 here..."
-            className="bg-gray-200 p-2 rounded-2xl h-full"
+            value={interfaceOutput}
+            readOnly
+            className="bg-gray-100 p-3 rounded-xl font-mono h-full"
           />
+        </div>
 
-          <button
-            type="submit"
-            className="bg-blue-600 p-2 rounded-2xl text-lg font-semibold text-white"
-          >
-            Generate Interfaces
-          </button>
-        </form>
-    
+        
+      </div>
 
-      <div className="flex flex-col space-y-4 h-10/12">
-        <label htmlFor="result-area" className="font-bold text-green-700">
-          Generated TypeScript Interfaces
-        </label>
-
-        <textarea
-          id="result-area"
-          // rows={25}
-          value={interfaceOutput}
-          readOnly
-          className="bg-gray-100 p-3 rounded-xl font-mono h-full"
-        />
+      <div className="bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit p-3 absolute right-8 top-6">
+        <button 
+          onClick={handleCopyText}
+          className="flex space-x-2 items-center">
+           <Copy className={`w-4 h-4 ${copyResultState? 'text-green-700': 'text-gray-700'} `}/> 
+           <span className={`text-md ${copyResultState? 'text-green-700': 'text-gray-700'}`}>{ copyResultState ? 'Copied to clipboard!': 'Copy Code'}</span></button>
       </div>
     </div>
   );
