@@ -135,7 +135,7 @@ function handleEditorChange(value: string | undefined) {
             htmlFor="input-area"
             className="font-bold text-blue-500 text-base lg:text-lg"
           >
-            Enter your JSON / JSON5 here
+            Enter JSON or JSON5 Input
           </label>
 
           {/* <textarea
@@ -154,6 +154,7 @@ function handleEditorChange(value: string | undefined) {
                 theme="vs-dark"
                 value={comment}
                 onChange={handleEditorChange}
+                aria-label="JSON / JSON5 input editor"
                 options={{
               
                   fontSize: 14,
