@@ -186,7 +186,7 @@ function App() {
       </div>
 
       {/* Copy Button */}
-      <div className="z-10 bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-2 lg:px-3 py-1 lg:py-2 absolute right-5 lg:right-10 top-5 md:top-7 hover:scale-101 focus:outline-2">
+     { interfaceOutput && <div className="z-10 bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-2 lg:px-3 py-1 lg:py-2 absolute right-5 lg:right-10 top-5 md:top-7 hover:scale-101 focus:outline-2">
         <button
           onClick={handleCopyText}
           className="flex space-x-2 items-center"
@@ -204,7 +204,7 @@ function App() {
             {copyResultState ? "Copied to clipboard!" : "Copy Code"}
           </span>
         </button>
-      </div>
+      </div>}
 
       <Toaster 
        position="top-center" />
