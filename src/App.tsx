@@ -117,7 +117,7 @@ function App() {
   };
 
   return (
-    <div className="relative bg-gray-800">
+    <div className=" bg-gray-800">
       <div className="p-5 w-full grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-8 h-screen">
         <form
           onSubmit={handleSubmit}
@@ -149,62 +149,67 @@ function App() {
         </form>
 
         {/* Output Layout */}
-        <div className="flex flex-col space-y-3 h-10/12">
-          <label
-            htmlFor="result-area"
-            className="font-bold text-green-500 text-base lg:text-lg"
-          >
-            Generated TypeScript Interfaces
-          </label>
+        <div className="relative">
+          <div className="flex flex-col space-y-3 h-10/12">
+            <label
+              htmlFor="result-area"
+              className="font-bold text-green-500 text-base lg:text-lg"
+            >
+              Generated TypeScript Interfaces
+            </label>
 
-          {/* <textarea
-            id="result-area"
-            // rows={25}
-            value={interfaceOutput}
-            readOnly
-            className="bg-slate-900 text-white  p-3 rounded-xl font-mono h-full shadow-lg border border-gray-600"
-          /> */}
-
-          {/* Monaco editor */}
-          <div className="rounded-xl overflow-auto border border-gray-600 shadow-lg bg-slate-900 h-full">
-            <Editor
-              height="100%"
-              language="typescript"
-              theme="custom-dark"
+            {/* <textarea
+              id="result-area"
+              // rows={25}
               value={interfaceOutput}
-              beforeMount={handleEditorWillMount}
-              options={{
-                readOnly: true,
-                minimap: { enabled: false },
-                fontSize: 16,
-                padding: { top: 16, bottom: 16 },
-                scrollBeyondLastLine: false,
-              }}
-            />
+              readOnly
+              className="bg-slate-900 text-white  p-3 rounded-xl font-mono h-full shadow-lg border border-gray-600"
+            /> */}
+
+            {/* Monaco editor */}
+            <div className="rounded-xl overflow-auto border border-gray-600 shadow-lg bg-slate-900 h-full">
+              <Editor
+                height="100%"
+                language="typescript"
+                theme="custom-dark"
+                value={interfaceOutput}
+                beforeMount={handleEditorWillMount}
+                options={{
+                  readOnly: true,
+                  minimap: { enabled: false },
+                  fontSize: 16,
+                  padding: { top: 16, bottom: 16 },
+                  scrollBeyondLastLine: false,
+                }}
+              />
+            </div>
           </div>
+          
+           {/* Copy Button */}
+          { interfaceOutput && <div className="z-10 bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-2 lg:px-3 py-1 lg:py-2 absolute right-0 lg:right-5 top-0 md:top-5 hover:scale-101 focus:outline-2">
+              <button
+                onClick={handleCopyText}
+                className="flex space-x-2 items-center"
+              >
+                <Copy
+                  className={`w-4 h-4 ${
+                    copyResultState ? "text-green-700" : "text-gray-800"
+                  } `}
+                />
+                <span
+                  className={`text-md ${
+                    copyResultState ? "text-green-700" : "text-gray-800"
+                  }`}
+                >
+                  {copyResultState ? "Copied to clipboard!" : "Copy Code"}
+                </span>
+              </button>
+            </div>}
+
         </div>
       </div>
 
-      {/* Copy Button */}
-     { interfaceOutput && <div className="z-10 bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-2 lg:px-3 py-1 lg:py-2 absolute right-5 lg:right-10 top-5 md:top-7 hover:scale-101 focus:outline-2">
-        <button
-          onClick={handleCopyText}
-          className="flex space-x-2 items-center"
-        >
-          <Copy
-            className={`w-4 h-4 ${
-              copyResultState ? "text-green-700" : "text-gray-800"
-            } `}
-          />
-          <span
-            className={`text-md ${
-              copyResultState ? "text-green-700" : "text-gray-800"
-            }`}
-          >
-            {copyResultState ? "Copied to clipboard!" : "Copy Code"}
-          </span>
-        </button>
-      </div>}
+     
 
       <Toaster 
        position="top-center" />
