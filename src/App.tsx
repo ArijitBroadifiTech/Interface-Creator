@@ -77,9 +77,15 @@ function App() {
   }
 
   //Reflect the changes in input box
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(event.target.value);
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   console.log(event.target.value);
+    
+  //   setComment(event.target.value);
+  // };
+
+function handleEditorChange(value: string | undefined) {
+  setComment(value ?? "");
+}
 
   //After click the Generate button
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -129,17 +135,33 @@ function App() {
             htmlFor="input-area"
             className="font-bold text-blue-500 text-base lg:text-lg"
           >
-            Enter your data
+            Enter your JSON / JSON5 here
           </label>
 
-          <textarea
+          {/* <textarea
             id="input-area"
             value={comment}
             onChange={handleChange}
             // rows={25}
             placeholder="Paste JSON / JSON5 here..."
             className="bg-gray-900 text-gray-100  p-2 rounded-2xl h-full shadow-md border border-gray-600"
-          />
+          /> */}
+
+           <div className="rounded-xl overflow-auto border border-gray-600 shadow-lg bg-gray-900 h-full">
+              <Editor
+                height="100%"
+                language="json5"
+                theme="vs-dark"
+                value={comment}
+                onChange={handleEditorChange}
+                options={{
+              
+                  fontSize: 14,
+                  padding: { top: 16, bottom: 16 },
+                 
+                }}
+              />
+            </div>
 
           {/* Submit Button */}
           <button
@@ -179,7 +201,7 @@ function App() {
                 options={{
                   readOnly: true,
                   minimap: { enabled: false },
-                  fontSize: 16,
+                  fontSize: 14,
                   padding: { top: 16, bottom: 16 },
                   scrollBeyondLastLine: false,
                 }}
