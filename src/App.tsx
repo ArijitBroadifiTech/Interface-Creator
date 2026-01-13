@@ -98,8 +98,10 @@ function App() {
       setInterfaceOutput(formatted);
     }  catch (error: unknown) {
   if (error instanceof Error) {
+    const errorMessage = `${error.name}\n${error.message}`
+    setInterfaceOutput(errorMessage)
     toast.error(error.message);
-    // console.log(error.message);
+  //  console.log(error.name);
     
   } else {
     toast.error("Something went wrong");
@@ -186,7 +188,7 @@ function App() {
           </div>
           
            {/* Copy Button */}
-          { interfaceOutput && <div className="z-10 bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-2 lg:px-3 py-1 lg:py-2 absolute right-0 lg:right-5 top-0 md:top-5 hover:scale-101 focus:outline-2">
+          { interfaceOutput && <div className="z-10 bg-blue-100 border rounded-lg border-blue-300 shadow-xl w-fit px-2 lg:px-3 py-1 lg:py-2 absolute right-0 lg:right-5 top-0 md:top-2 hover:scale-101 focus:outline-2">
               <button
                 onClick={handleCopyText}
                 className="flex space-x-2 items-center"
