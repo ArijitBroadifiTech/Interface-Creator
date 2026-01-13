@@ -2,6 +2,7 @@ import { useState } from "react";
 import JSON5 from "json5";
 import { Copy } from "lucide-react";
 import { Editor, type Monaco } from "@monaco-editor/react";
+import { toast, Toaster } from "sonner";
 
 type InterfaceShape = Record<string, string>;
 type InterfaceMap = Record<string, InterfaceShape>;
@@ -95,10 +96,16 @@ function App() {
         .join("\n\n");
 
       setInterfaceOutput(formatted);
-    } catch {
-      alert("Invalid input format");
-    }
-  };
+    }  catch (error: unknown) {
+  if (error instanceof Error) {
+    toast.error(error.message);
+    // console.log(error.message);
+    
+  } else {
+    toast.error("Something went wrong");
+    // console.error(error);
+  }}
+}
 
   const handleCopyText = () => {
     setCopyResultState(true);
@@ -198,6 +205,9 @@ function App() {
           </span>
         </button>
       </div>
+
+      <Toaster 
+       position="top-center" />
     </div>
   );
 }
